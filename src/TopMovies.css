@@ -1,0 +1,15 @@
+.top__movies {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.top__movies > button {
+  height: 40px;
+}
+
+.topmovies__movie {
+  display: flex;
+  justify-content: center;
+}
