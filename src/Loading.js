@@ -1,7 +1,8 @@
 import React from "react";
+import { CircleSpinner } from "react-spinners-kit";
 
-function Loading() {
-  return <div>Loading....</div>;
+function Loading({ loading }) {
+  return <CircleSpinner loading={true} />;
 }
 
 export default Loading;

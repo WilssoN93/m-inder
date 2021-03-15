@@ -1,9 +1,38 @@
 .group {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  height: 80px;
+  align-items: baseline;
   width: 100%;
+  height: 80px;
+}
+
+.group__link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  border-bottom: 1px solid lightgray;
+  text-decoration: none;
+  color: #801818;
+  height: 100%;
+  width: 100%;
+  font-weight: 600;
+  font-size: 0.7em;
+}
+
+.group:hover {
+  background-color: rgb(243, 240, 240);
+  border-bottom: 2px solid #801818;
+}
+
+.group__icon {
+  color: #801818;
+  margin-right: 10px;
+}
+
+.add-group__link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
 }

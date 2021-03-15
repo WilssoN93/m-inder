@@ -1,16 +1,16 @@
-import "./App.css";
-import Header from "./Header";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Sidebar from "./Sidebar";
-import Movies from "./Movies";
+import "./App.css";
 import { auth } from "./firebase";
-import Login from "./Login";
+import Header from "./Header";
 import LoadingContainer from "./LoadingContainer";
+import Login from "./Login";
+import Movies from "./Movies";
+import Sidebar from "./Sidebar";
 function App() {
   const [user, loading] = useAuthState(auth);
 
   if (loading) {
-    return <LoadingContainer />;
+    return <LoadingContainer loading={loading} />;
   }
 
   return user != null ? (

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Movie from "./Movie";
 import axios from "axios";
 import firebase from "firebase";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "./TopMovies.css";
 import db, { auth } from "./firebase";
+import Loading from "./Loading";
+import LoadingContainer from "./LoadingContainer";
+import Movie from "./Movie";
+import "./TopMovies.css";
 
 async function fetchMovies(fetchUrl, maxPage, category) {
   var random = Math.floor(Math.random() * maxPage + 1);
@@ -62,13 +64,13 @@ function TopMovies({ fetchUrl, category }) {
   }, [category]);
 
   function handleLiked() {
-    console.log(user.uid);
     const id = user.uid;
     db.collection("watchlists")
       .doc(id)
       .update({
         movies: firebase.firestore.FieldValue.arrayUnion({
           title: movie.title,
+          overview: movie.overview,
           poster_path: movie.poster_path,
           movieId: movie.id,
         }),
@@ -92,7 +94,9 @@ function TopMovies({ fetchUrl, category }) {
       />
     </div>
   ) : (
-    <h1>Loading....</h1>
+    <LoadingContainer>
+      <Loading loading={true}></Loading>
+    </LoadingContainer>
   );
 }
 

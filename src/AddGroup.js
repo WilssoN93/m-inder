@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import db from "./firebase";
-import "./AddGroup.css";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase";
+import "./AddGroup.css";
+import db, { auth } from "./firebase";
 
 function AddGroup() {
   const [groupName, setGroupName] = useState("");
@@ -16,6 +15,7 @@ function AddGroup() {
         {
           id: user.uid,
           name: user.displayName,
+          photoUrl:user.photoURL,
           admin: true,
         },
       ],

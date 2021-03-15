@@ -1,27 +1,38 @@
 import React from "react";
-import "./Movies.css";
-import { Route, Link } from "react-router-dom";
-import TopMovies from "./TopMovies";
-import { uris } from "./requestUris";
-import MovieMatch from "./MovieMatch";
-import Overview from "./Overview";
+import { Link, Route } from "react-router-dom";
 import AddGroup from "./AddGroup";
+import GroupPage from "./GroupPage";
+import Invite from "./Invite";
+import Join from "./Join";
+import MovieMatch from "./MovieMatch";
+import "./Movies.css";
+import Overview from "./Overview";
+import { uris } from "./requestUris";
+import TopMovies from "./TopMovies";
 
 function Movies() {
   return (
     <div className="movies">
       <div className="movies__headers">
-        <div className="movies__headers_top">
-          <Link to="/top-movies">Top Movies</Link>
+        <div className="movies__headers__header">
+          <Link className="movies__link" to="/top-movies">
+            Top Movies
+          </Link>
         </div>
-        <div className="movies__headers_up_coming">
-          <Link to="/up-and-coming">Up and Coming</Link>
+        <div className="movies__headers__header">
+          <Link className="movies__link" to="/up-and-coming">
+            Up and Coming
+          </Link>
         </div>
-        <div className="movies__headers_popular">
-          <Link to="/popular">Popular</Link>
+        <div className="movies__headers__header">
+          <Link className="movies__link" to="/popular">
+            Popular
+          </Link>
         </div>
-        <div className="movies__headers_popular">
-          <Link to="/movie-match">All Movies</Link>
+        <div className="movies__headers__header">
+          <Link className="movies__link" to="/movie-match">
+            All Movies
+          </Link>
         </div>
       </div>
 
@@ -44,9 +55,17 @@ function Movies() {
         <Route path="/overview/:id">
           <Overview fetchUrlId={uris.fetchWithId} />
         </Route>
-        <Route path="/group/:groupId"></Route>
+        <Route exact path="/group/:groupId">
+          <GroupPage />
+        </Route>
         <Route path="/add-group">
           <AddGroup />
+        </Route>
+        <Route path="/group/:groupId/join">
+          <Join />
+        </Route>
+        <Route path="/group/:groupId/invite">
+          <Invite />
         </Route>
       </div>
     </div>

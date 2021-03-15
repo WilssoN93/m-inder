@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import db from "./firebase";
 import Group from "./Group";
 import "./Sidebar.css";
-import db from "./firebase";
 function Sidebar() {
   const [groups, setGroups] = useState([]);
   useEffect(() => {
@@ -18,7 +18,12 @@ function Sidebar() {
   return (
     <div className="sidebar">
       {groups.map((group) => (
-        <Group group={group} key={group.id} isGroup={true} />
+        <Group
+          className="sidebar__group"
+          group={group}
+          key={group.id}
+          isGroup={true}
+        />
       ))}
       <Group isGroup={false} />
     </div>

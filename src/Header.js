@@ -1,11 +1,16 @@
+import { Avatar } from "@material-ui/core";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
 import "./Header.css";
 
 function Header() {
+  const [user] = useAuthState(auth);
   return (
     <div className="header">
       <div className="header__left">
-        <h1>Left</h1>
+        <Avatar className="header__avatar" src={user?.photoURL} />
+        <h3>{user?.displayName}</h3>
       </div>
       <div className="header__center">
         <h1>Center</h1>
