@@ -45,7 +45,6 @@ function writePagesTodb(category, maxPage) {
 function TopMovies({ fetchUrl, category }) {
   const [movie, setMovie] = useState("");
   const [maxPage, setMaxPage] = useState(0);
-  const [groupUsers, setGroupUsers] = useState([]);
   const [user] = useAuthState(auth);
 
   useEffect(() => {

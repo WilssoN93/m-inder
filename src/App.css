@@ -5,4 +5,5 @@
 
 .app__body {
   display: flex;
+  padding-bottom: 20px;
 }

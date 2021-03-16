@@ -4,6 +4,7 @@ import Group from "./Group";
 import "./Sidebar.css";
 function Sidebar() {
   const [groups, setGroups] = useState([]);
+
   useEffect(() => {
     db.collection("groups").onSnapshot((snapshot) =>
       setGroups(

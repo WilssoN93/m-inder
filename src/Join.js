@@ -1,12 +1,9 @@
-import firebase from "firebase";
 import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router";
-import db, { auth } from "./firebase";
+import db from "./firebase";
 import "./Join.css";
 
 function Join() {
-  const [user] = useAuthState(auth);
   var { groupId } = useParams();
   const [group, setGroup] = useState({});
 
@@ -21,16 +18,11 @@ function Join() {
   }, [groupId]);
 
   const addUser = () => {
-    db.collection("groups")
-      .doc(groupId)
-      .update({
-        users: firebase.firestore.FieldValue.arrayUnion({
-          id: user.uid,
-          name: user.displayName,
-          photoUrl: user.photoURL,
-          admin: false,
-        }),
-      });
+    const newUser = db.collection("groups").doc(groupId);
+
+    newUser.get().then((doc) => {
+      console.log(doc.data());
+    });
   };
 
   return (
