@@ -11,6 +11,11 @@ function Invite() {
           Copy this link and share it with your friends so they can join your
           group!
         </h1>
+        <p>
+          OBS! Rememeber that if another person joins your group your matched
+          movies vill be reset and matched against all persons
+        </p>
+        <br />
         <p className="invite__link">
           http://localhost:3000/group/{groupId}/join
         </p>

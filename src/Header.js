@@ -18,6 +18,7 @@ function Header() {
       <div className="header__right">
         <h1>Right</h1>
       </div>
+      <button onClick={() => auth.signOut()}>Sign Out</button>
     </div>
   );
 }

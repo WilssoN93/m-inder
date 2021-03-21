@@ -1,34 +1,36 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router";
-import db from "./firebase";
+import { auth } from "./firebase";
 import "./Join.css";
+import { addNewUserToGroup, fetchGroupById } from "./requests";
 
 function Join() {
   var { groupId } = useParams();
   const [group, setGroup] = useState({});
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
-    db.collection("groups")
-      .doc(groupId)
-      .get()
-      .then((doc) => {
-        const data = doc.data();
-        setGroup(data);
-      });
+    fetchGroupById(groupId)
+      .then((group) => setGroup(group))
+      .catch((err) => console.log(err.message));
   }, [groupId]);
 
   const addUser = () => {
-    const newUser = db.collection("groups").doc(groupId);
-
-    newUser.get().then((doc) => {
-      console.log(doc.data());
+    addNewUserToGroup({
+      groupId: groupId,
+      user: {
+        id: user.uid,
+        name: user.displayName,
+        photoUrl: user.photoURL,
+      },
     });
   };
 
   return (
     <div className="join">
       <div className="join__container">
-        <h1>Hello, You have been invited to join {group.name}!</h1>
+        <h1>Hello, You have been invited to join group "{group.groupName}"!</h1>
         <button onClick={addUser}>Join</button>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./AddGroup.css";
-import db, { auth } from "./firebase";
+import { auth } from "./firebase";
+import { createGroup } from "./requests";
 
 function AddGroup() {
   const [groupName, setGroupName] = useState("");
@@ -9,17 +10,19 @@ function AddGroup() {
 
   function handleAddGroup(e) {
     e.preventDefault();
-    db.collection("groups").add({
-      name: groupName,
+    createGroup({
+      groupName: groupName,
       users: [
         {
           id: user.uid,
           name: user.displayName,
-          photoUrl:user.photoURL,
-          admin: true,
+          photoUrl: user.photoURL,
+          watchList: [],
         },
       ],
-    });
+      matchedMovies: [],
+    }).catch((err) => console.log(err.message));
+
     setGroupName("");
   }
 

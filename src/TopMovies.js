@@ -1,11 +1,12 @@
 import axios from "axios";
-import firebase from "firebase";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Description from "./Description";
 import db, { auth } from "./firebase";
 import Loading from "./Loading";
 import LoadingContainer from "./LoadingContainer";
 import Movie from "./Movie";
+import { addNewMovieToUser, matchMovieWithIds } from "./requests";
 import "./TopMovies.css";
 
 async function fetchMovies(fetchUrl, maxPage, category) {
@@ -63,17 +64,16 @@ function TopMovies({ fetchUrl, category }) {
   }, [category]);
 
   function handleLiked() {
-    const id = user.uid;
-    db.collection("watchlists")
-      .doc(id)
-      .update({
-        movies: firebase.firestore.FieldValue.arrayUnion({
-          title: movie.title,
-          overview: movie.overview,
-          poster_path: movie.poster_path,
-          movieId: movie.id,
-        }),
-      });
+    console.log(movie);
+    addNewMovieToUser(user.uid, {
+      id: movie.id,
+      title: movie.title,
+      overview: movie.overview,
+      posterPath: movie.poster_path,
+    }).then((res) => console.log(res));
+    matchMovieWithIds(user.uid, movie.id).then((res) =>
+      console.log(res.json())
+    );
 
     const chosenMovie = fetchMovies(fetchUrl, maxPage, category);
     chosenMovie.then((data) => setMovie(data));
@@ -91,6 +91,7 @@ function TopMovies({ fetchUrl, category }) {
         handleLiked={handleLiked}
         handleDisliked={handleDisliked}
       />
+      {movie.overview ? <Description description={movie} /> : null}
     </div>
   ) : (
     <LoadingContainer>

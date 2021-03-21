@@ -1,9 +1,11 @@
+import ThumbDownIcon from "@material-ui/icons/ThumbDown";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import React from "react";
 import "./Movie.css";
 import { image_base_url } from "./requestUris";
 
 function Movie({
-  movie: { title, release_date, overview, poster_path, backdrop_path },
+  movie: { title, poster_path, backdrop_path },
   handleLiked,
   handleDisliked,
 }) {
@@ -16,18 +18,15 @@ function Movie({
         <div className="movie__body__container">
           <img src={`${image_base_url}${poster_path}`} alt={title} />
           <div className="movie__buttons">
-            <button onClick={handleLiked}>Like!</button>
-            <button onClick={handleDisliked}>Dislike!</button>
+            <ThumbUpIcon style={{ color: "#801818" }} onClick={handleLiked} />
+            <ThumbDownIcon
+              style={{ color: "#801818" }}
+              onClick={handleDisliked}
+            />
           </div>
         </div>
-        <div className="movie__description">
-          <div className="movie__title">
-            <h1>{title}</h1>
-            <p>{release_date}</p>
-          </div>
-          <p className="movie__overview">
-            {overview ? overview : "No overview"}
-          </p>
+        <div className="movie__title">
+          <h1>{title}</h1>
         </div>
       </div>
     </div>

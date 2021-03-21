@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import db, { auth } from "./firebase";
+import { auth } from "./firebase";
 import "./GroupPage.css";
+import { fetchGroupById } from "./requests";
 import { image_base_url } from "./requestUris";
 
 function GroupPage() {
@@ -14,18 +15,10 @@ function GroupPage() {
   var { groupId } = useParams();
 
   useEffect(() => {
-    db.collection("groups")
-      .doc(groupId)
-      .get()
-      .then((res) => {
-        const data = res.data();
-        setUsers(data.users);
-      });
-
-    db.collection("watchlists")
-      .doc(user.uid)
-      .get()
-      .then((res) => setWatchList(res.data().movies));
+    fetchGroupById(groupId).then((res) => {
+      setUsers(res.users);
+      setWatchList(res.matchedMovies);
+    });
   }, [groupId, user.uid]);
 
   return (
@@ -49,7 +42,7 @@ function GroupPage() {
         {watchList.map((movie) => (
           <div className="grouppage__movie" key={movie.id}>
             <img
-              src={`${image_base_url}${movie.poster_path}`}
+              src={`${image_base_url}${movie.posterPath}`}
               alt={movie.name}
             ></img>
             <div className="grouppage__movie-text">

@@ -9,7 +9,7 @@ function Group(props) {
     <div className="group">
       <Link className="group__link" to={`/group/${props.group.id}`}>
         <MovieCreationRoundedIcon className="group__icon" />
-        <h1>{props.group.data.name}</h1>
+        <h1>{props.group.name}</h1>
       </Link>
     </div>
   ) : (

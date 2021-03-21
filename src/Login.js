@@ -1,5 +1,6 @@
 import React from "react";
 import { auth, provider } from "./firebase";
+import "./Login.css";
 
 function Login() {
   function signIn() {
@@ -7,8 +8,14 @@ function Login() {
   }
 
   return (
-    <div>
-      <button onClick={signIn}></button>
+    <div className="login">
+      <div className="login__login-container">
+        <img
+          src="https://www.happiness.se/sites/default/files/2019-03/google-logo.svg"
+          alt="Google"
+        />
+        <button onClick={signIn}>Sign in With Google</button>
+      </div>
     </div>
   );
 }
