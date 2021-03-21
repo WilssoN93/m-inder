@@ -11,28 +11,30 @@ import { addNewMovieToUser, matchMovieWithIds } from "./requests";
 import { api_key } from "./requestUris";
 
 async function fetchRandomMovie(fetchUrlId, latest) {
-  var chosenMovie = {};
-  if (latest) {
+  console.log("latest:" + latest.id);
+  if (latest.id) {
     const randomId = Math.floor(Math.random() * latest.id);
-    await axios
-      .get(fetchUrlId + randomId + "?api_key=" + api_key)
-      .then((res) => {
-        if (!res.data.overview || !res.data.poster_path) {
-          fetchRandomMovie(fetchUrlId, latest);
+    return await fetch(fetchUrlId + randomId + "?api_key=" + api_key)
+      .then((res) => res.json())
+      .then((data) => {
+        const chosenMovie = data;
+        if (
+          !data.poster_path ||
+          data.poster_path === "" ||
+          data.poster_path === null
+        ) {
+          console.log("Reroll");
+          return fetchRandomMovie(fetchUrlId, latest);
         }
-        chosenMovie = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
-        fetchRandomMovie(fetchUrlId, latest);
+        console.log(chosenMovie);
+        return chosenMovie;
       });
-    return chosenMovie;
   }
 }
 
-function MovieMatch({ fetchUrl, fetchUrlId, handleLiked, handleDisliked }) {
-  const [latest, setLatest] = useState(undefined);
-  const [movie, setMovie] = useState(undefined);
+function MovieMatch({ fetchUrl, fetchUrlId }) {
+  const [latest, setLatest] = useState({});
+  const [movie, setMovie] = useState("");
   const [user] = useAuthState(auth);
   useEffect(() => {
     async function fetchLatest() {
@@ -64,16 +66,12 @@ function MovieMatch({ fetchUrl, fetchUrlId, handleLiked, handleDisliked }) {
 
   function handleDisliked() {
     const chosenMovie = fetchRandomMovie(fetchUrlId, latest);
-    chosenMovie.then((data) => setMovie(data));
+    chosenMovie.then((data) => {
+      setMovie(data);
+    });
   }
 
-  console.log(movie);
-
-  return movie &&
-    movie.poster_path !== null &&
-    movie.poster_path !== "" &&
-    movie.backdrop_path !== null &&
-    movie.backdrop_path !== "" ? (
+  return movie && movie.poster_path !== null && movie.poster_path !== "" ? (
     <div className="moviematch__movie">
       <Movie
         movie={movie}

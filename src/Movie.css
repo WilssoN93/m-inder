@@ -70,6 +70,36 @@
   height: 50px;
 }
 
-.MuiIcon-root {
-  color: green;
+.like {
+  color: lightgreen;
+  height: 40px;
+  width: 50px;
+  padding: 5px;
+}
+
+.dislike {
+  color: red;
+  height: 40px;
+  width: 50px;
+  padding: 5px;
+}
+
+.like__container {
+  border: lightgreen solid 1px;
+  border-radius: 9999px;
+  margin: 10px;
+}
+
+.dislike__container {
+  border: red solid 1px;
+  border-radius: 9999px;
+  margin: 10px;
+}
+
+.like__container:hover {
+  cursor: pointer;
+}
+
+.dislike__container:hover {
+  cursor: pointer;
 }

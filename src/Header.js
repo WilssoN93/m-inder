@@ -16,9 +16,8 @@ function Header() {
         <h1>Center</h1>
       </div>
       <div className="header__right">
-        <h1>Right</h1>
+        <button onClick={() => auth.signOut()}>Sign Out</button>
       </div>
-      <button onClick={() => auth.signOut()}>Sign Out</button>
     </div>
   );
 }

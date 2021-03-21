@@ -31,8 +31,10 @@ function GroupPage() {
           </div>
         ))}
         {true ? (
-          <div>
-            <Link to={`/group/${groupId}/invite`}>Invite</Link>
+          <div className="grouppage__invite__container">
+            <Link className="grouppage__invite" to={`/group/${groupId}/invite`}>
+              Invite
+            </Link>
           </div>
         ) : (
           <div></div>

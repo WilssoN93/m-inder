@@ -5,6 +5,8 @@
 }
 
 .grouppage__users {
+  display: flex;
+  flex-direction: column;
   margin: 20px;
   margin-top: 0px;
   padding: 10px;
@@ -41,6 +43,33 @@
 .grouppage__movie {
   display: flex;
   margin: auto;
+}
+.grouppage__invite__container {
+  display: flex;
+  justify-content: center;
+}
+
+.grouppage__invite > a {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+.grouppage__invite {
+  background-color: #801818;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 20px;
+  width: -webkit-fill-available;
+}
+
+.grouppage__invite:hover {
+  cursor: pointer;
 }
 
 .grouppage__movie-text > h3 {

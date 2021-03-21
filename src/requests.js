@@ -1,4 +1,5 @@
-const host = "http://192.168.1.181:8080";
+export const hostIp = "78.108.61.63";
+const host = `http://${hostIp}:8080`;
 
 const createGroupUrl = "/group"; //POST Group Request
 const getGroupsByUserIdUrl = "/group/user/"; //GET userId

@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import "./Invite.css";
+import { hostIp } from "./requests";
 
 function Invite() {
   var { groupId } = useParams();
@@ -17,7 +18,7 @@ function Invite() {
         </p>
         <br />
         <p className="invite__link">
-          http://localhost:3000/group/{groupId}/join
+          http://{hostIp}:3000/group/{groupId}/join
         </p>
       </div>
     </div>

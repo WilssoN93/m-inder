@@ -6,7 +6,9 @@ function Description(props) {
     <div className="description">
       <p>{props.description.overview}</p>
       <p>
-        <strong>Release Date:</strong> {props.description.release_date}
+        <strong>Release Date:</strong> {props.description.release_date}{" "}
+        <strong>Spoken Language: </strong>{" "}
+        {props.description.original_language.toUpperCase()}
       </p>
     </div>
   );

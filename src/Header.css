@@ -32,7 +32,24 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-end;
   width: 33%;
+}
+
+.header__right > button {
+  background-color: #801818;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 50px;
+}
+
+.header__right > button:hover {
+  cursor: pointer;
 }
 
 .header__left > h3 {
