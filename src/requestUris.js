@@ -7,4 +7,5 @@ export const uris = {
   fetchUpAndComing: `https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}&language=sv-SE&page=`,
   fetchLatest: `https://api.themoviedb.org/3/movie/latest?api_key=${api_key}`,
   fetchWithId: `https://api.themoviedb.org/3/movie/`,
+  fetchSearchQuery: `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=sv-SE&&&include_adult=false&query=`,
 };

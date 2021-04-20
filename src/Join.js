@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Redirect, useHistory, useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { auth } from "./firebase";
 import "./Join.css";
 import { addNewUserToGroup, fetchGroupById } from "./requests";

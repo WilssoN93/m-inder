@@ -8,6 +8,7 @@ import LoadingContainer from "./LoadingContainer";
 import Movie from "./Movie";
 import { addNewMovieToUser, matchMovieWithIds } from "./requests";
 import "./TopMovies.css";
+import Trailer from "./Trailer";
 
 async function fetchMovies(fetchUrl, maxPage, category) {
   var random = Math.floor(Math.random() * maxPage + 1);
@@ -92,7 +93,7 @@ function TopMovies({ fetchUrl, category }) {
         handleDisliked={handleDisliked}
       />
       {movie.overview ? <Description description={movie} /> : null}
-      {/*{movie.video ? <Trailer id={movie.id} /> : null}*/}
+      {movie.video ? <Trailer id={movie.id} /> : null}
     </div>
   ) : (
     <LoadingContainer>

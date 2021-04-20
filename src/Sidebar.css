@@ -10,4 +10,5 @@
 
 .sidebar__group:hover {
   border-bottom: 2px solid #801818;
+  border-radius: 5px;
 }

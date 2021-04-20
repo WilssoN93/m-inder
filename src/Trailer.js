@@ -1,14 +1,17 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { api_key } from "./requestUris";
 
 function Trailer({ movieId }) {
   const [video, setVideo] = useState({});
 
   useEffect(() => {
-    const fetchVideoUrl =
-      "https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US";
-    fetch();
+    const fetchVideoUrl = `https://api.themoviedb.org/3/movie/${movieId}}/videos?api_key=${api_key}&language=en-US`;
+    fetch(fetchVideoUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setVideo(data);
+      });
   }, [movieId]);
 
   return (

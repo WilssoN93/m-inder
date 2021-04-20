@@ -1,4 +1,4 @@
-export const hostIp = "78.108.61.63";
+export const hostIp = "m-inder.asuscomm.com";
 const host = `http://${hostIp}:8080`;
 
 const createGroupUrl = "/group"; //POST Group Request

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import "./AddGroup.css";
-import { auth } from "./firebase";
-import { createGroup } from "./requests";
+import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import './AddGroup.css';
+import { auth } from './firebase';
+import { createGroup } from './requests';
 
-function AddGroup() {
-  const [groupName, setGroupName] = useState("");
+function AddGroup({ fetchGroups }) {
+  const [groupName, setGroupName] = useState('');
   const [user] = useAuthState(auth);
 
-  function handleAddGroup(e) {
+  async function handleAddGroup(e) {
     e.preventDefault();
-    createGroup({
+    await createGroup({
       groupName: groupName,
       users: [
         {
@@ -22,8 +22,8 @@ function AddGroup() {
       ],
       matchedMovies: [],
     }).catch((err) => console.log(err.message));
-
-    setGroupName("");
+    await fetchGroups();
+    setGroupName('');
   }
 
   function handleInput(e) {
@@ -31,11 +31,11 @@ function AddGroup() {
   }
 
   return (
-    <div className="add-group">
-      <form className="add-group__form" onSubmit={handleAddGroup}>
+    <div className='add-group'>
+      <form className='add-group__form' onSubmit={handleAddGroup}>
         <input
           value={groupName}
-          placeholder="Ender Group name"
+          placeholder='Ender Group name'
           onChange={handleInput}
         />
         <button></button>

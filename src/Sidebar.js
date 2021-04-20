@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase";
+import React, { useEffect } from "react";
 import Group from "./Group";
-import { fetchGroupsByUserId } from "./requests";
 import "./Sidebar.css";
 
-function Sidebar() {
-  const [groups, setGroups] = useState([]);
-  const [user] = useAuthState(auth);
-
+function Sidebar({ groups, fetchGroups }) {
   useEffect(() => {
-    fetchGroupsByUserId(user.uid)
-      .then((res) => setGroups(res))
-      .catch((err) => console.log(err.message));
-  }, [user.uid]);
+    console.log(fetchGroups);
+    fetchGroups();
+  }, [fetchGroups]);
 
   return (
     <div className="sidebar">
