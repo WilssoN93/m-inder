@@ -2,12 +2,7 @@ import React, { useEffect } from "react";
 import Group from "./Group";
 import "./Sidebar.css";
 
-function Sidebar({ groups, fetchGroups }) {
-  useEffect(() => {
-    console.log(fetchGroups);
-    fetchGroups();
-  }, [fetchGroups]);
-
+function Sidebar({ groups }) {
   return (
     <div className="sidebar">
       {groups.map((group) => (

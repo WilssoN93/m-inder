@@ -1,9 +1,8 @@
 .app {
-  margin: 50px;
+  margin: 20px;
   height: 100vh;
 }
 
 .app__body {
   display: flex;
-  padding-bottom: 20px;
 }

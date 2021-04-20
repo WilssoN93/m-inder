@@ -4,7 +4,7 @@ import './AddGroup.css';
 import { auth } from './firebase';
 import { createGroup } from './requests';
 
-function AddGroup({ fetchGroups }) {
+function AddGroup({fetchGroups}) {
   const [groupName, setGroupName] = useState('');
   const [user] = useAuthState(auth);
 

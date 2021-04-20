@@ -10,6 +10,7 @@ function SearchMovie() {
   const [movies, setMovies] = useState([]);
   const [user] = useAuthState(auth);
   const searchInput = useRef(null);
+  const result = useRef(null);
 
   useEffect(() => {
     searchInput.current.focus();
@@ -37,6 +38,7 @@ function SearchMovie() {
     await fetch(uris.fetchSearchQuery + movieName)
       .then((res) => res.json())
       .then((data) => setMovies(data.results));
+    result.current.scrollIntoView({ behavior: 'smooth' });
     setMovieName('');
   };
   return (
@@ -54,7 +56,7 @@ function SearchMovie() {
           />
         </form>
       </div>
-      <div className='search__movies'>
+      <div ref={result} className='search__movies'>
         {movies.map((movie, index) =>
           movie.poster_path ? (
             <div className='search__movie' key={movie.id}>
