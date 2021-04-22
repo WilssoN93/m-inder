@@ -8,7 +8,8 @@ const addUserToGroupUrl = "/group/user"; //POST AddUserRequest
 const getUsersByGroupIdUrl = "/group/users/"; //GET userid
 const matchMovieWithMovieAndGroupUrl = "/group/match/"; //GET groupId/movieId
 const matchMoviesWithGroupUrl = "/group/match"; //GET groupId;
-const getUserByIdUrl = "/user/"; //GET userid
+const fetchUserByIdUrl = "/user/"; //GET userid
+const postGenresUrl = "/genre"
 const addNewMovieToUserWithUserIDUrl = "/user/"; //POST userId Movie
 
 /*
@@ -65,6 +66,24 @@ export const createGroup = async (group) => {
 
   return await fetch(myRequest).then((res) => console.log(res));
 };
+
+export const postGenres = async (genres) => {
+  const url = `${host}${postGenresUrl}`;
+  const myInit = {
+    method: "POST",
+    mode: "cors",
+    body: JSON.stringify(genres),
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  };
+
+  const myRequest = new Request(url, myInit);
+
+  return await fetch(myRequest).then((res) => console.log(res));
+
+}
+
 
 export const fetchGroupsByUserId = async (userId) => {
   return await fetch(`${host}${getGroupsByUserIdUrl}${userId}`, {

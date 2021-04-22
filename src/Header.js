@@ -24,6 +24,11 @@ function Header() {
             Movies
           </Link>
         </div>
+        <div className='header__center__link__container'>
+          <Link className='header__center__link' to={`/user/${user.uid}`}>
+            My Profile
+          </Link>
+        </div>
       </div>
       <div className='header__right'>
         <button onClick={() => auth.signOut()}>Sign Out</button>

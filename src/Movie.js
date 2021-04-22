@@ -9,7 +9,6 @@ function Movie({
   handleLiked,
   handleDisliked,
 }) {
-  console.log(poster_path + " " + title + " " + backdrop_path);
   return (
     <div
       className="movie"

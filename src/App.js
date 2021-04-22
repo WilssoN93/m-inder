@@ -12,6 +12,7 @@ import Join from './Join';
 import LoadingContainer from './LoadingContainer';
 import Login from './Login';
 import Movies from './Movies';
+import Profile from './Profile';
 import { fetchGroupsByUserId } from './requests';
 import Sidebar from './Sidebar';
 
@@ -57,6 +58,9 @@ function App() {
         </Route>
         <Route path='/movies'>
           <Movies />
+        </Route>
+        <Route path='/user/:userId'>
+          <Profile />
         </Route>
       </div>
     </div>
